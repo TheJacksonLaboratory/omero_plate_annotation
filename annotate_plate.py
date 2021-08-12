@@ -5,7 +5,6 @@ import pandas as pd
 from omero.rtypes import rstring
 from omero.sys import Parameters
 
-# plate_name, row (int), column (int), individual (str), concentration (float), compound (str)
 
 OMERO_SERVER = 'bhomero01lp'
 OMERO_GROUP = 'invitro_arsenic'
@@ -69,10 +68,9 @@ def main(csv, force):
                 logging.warning(f'Skipping MapAnnotation for well:{well_id}')
             else:
                 logging.warning(f'Forcing update of MapAnnotation:{ma_ids[0]} for well:{well_id}')
-                #ezomero.put_map_annotation(conn, ma_ids[0], kv_dict=record)
+                ezomero.put_map_annotation(conn, ma_ids[0], kv_dict=record)
         else:
-            #new_ma_id = ezomero.post_map_annotation(conn, "Well", well_id, kv_dict=record, ns=NAMESPACE)
-            new_ma_id = 999
+            new_ma_id = ezomero.post_map_annotation(conn, "Well", well_id, kv_dict=record, ns=NAMESPACE)
             print(f"New MapAnnotation:{new_ma_id} posted to Well:{well_id}")
     conn.close()
 
