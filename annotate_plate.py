@@ -49,6 +49,7 @@ def main(csv, force):
     # Go over every row of csv and annotate well accordingly
     for _, record in df.iterrows():
         # Parse the row
+        record = dict(record)
         plate_name = record.pop('plate_name')
         row_index = record.pop('row') - 1
         col_index = record.pop('column') - 1
